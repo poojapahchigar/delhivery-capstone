@@ -73,9 +73,7 @@ def clean_shipments(raw, medians=None):
 def build_features(clean, hubs):
     df = clean.merge(hubs, on="hub_id", how="left")
 
-    df["promised_hours"] = df["service_type"].map(PROMISED_HOURS)
-
-    df["promised_hours"] = df["service_type"].map(promised_map)
+    df["promised_hours"] = df["service_type"].map(PROMISED_HOURS)   
 
     df["is_cod"] = (
         df["payment_mode"].str.strip().str.lower() == "cod"
